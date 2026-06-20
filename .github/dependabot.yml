@@ -1,5 +1,8 @@
 version: 2
 
+# Global settings to reduce PR noise and improve consistency
+# See: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-dependency-updates
+
 updates:
   - package-ecosystem: "bundler"
     directories:
@@ -9,6 +12,7 @@ updates:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 5  # NEW: Prevent PR overload
     groups:
       sorbet:
         patterns:
@@ -30,7 +34,6 @@ updates:
           - "minor"
           - "patch"
 
-  # Watch the per-ecosystem native helpers
   - package-ecosystem: "composer"
     directories:
       - "/composer/helpers/v2"
@@ -38,6 +41,7 @@ updates:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 5
     groups:
       prod-dependencies:
         dependency-type: "production"
@@ -49,48 +53,69 @@ updates:
         update-types:
           - "minor"
           - "patch"
+
   - package-ecosystem: "devcontainers"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 3
+
   - package-ecosystem: "docker"
     directories:
       - "/"
       - "/go_modules"
       - "/cargo"
+      - "/maven"
+      - "/gradle"
+      - "/docker"
+      - "/uv"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 5
+    groups:
+      docker-updates:
+        patterns:
+          - "*"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 3
     groups:
       all-actions:
-        patterns: [ "*" ]
+        patterns:
+          - "*"
+
   - package-ecosystem: "gomod"
     directory: "/go_modules/helpers"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 3
+
   - package-ecosystem: "mix"
     directory: "/hex/helpers"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 3
+
   - package-ecosystem: "npm"
     directory: "/npm_and_yarn/helpers"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 5
     groups:
       npm-dependencies:
         patterns:
@@ -114,13 +139,16 @@ updates:
           - "patch"
     ignore:
       - dependency-name: "npm"
-        update-types: [ "version-update:semver-major" ]
+        update-types:
+          - "version-update:semver-major"
+
   - package-ecosystem: "pip"
     directory: "/python/helpers"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 5
     groups:
       common:
         patterns:
@@ -143,67 +171,57 @@ updates:
       poetry:
         patterns:
           - poetry
+
   - package-ecosystem: "pub"
     directory: "/pub/helpers"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 3
+
   - package-ecosystem: "nuget"
     directory: "/nuget/helpers/lib/NuGetUpdater"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 3
+
   - package-ecosystem: "dotnet-sdk"
     directory: "/nuget/helpers/lib/NuGetUpdater"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 3
+
   - package-ecosystem: "gitsubmodule"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
+    open-pull-requests-limit: 3
+
   - package-ecosystem: "maven"
     directory: "/maven/lib/dependabot/maven/"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
-  - package-ecosystem: "docker"
-    directory: "/maven"
+    open-pull-requests-limit: 3
+
+  - package-ecosystem: "pip"
+    directory: "/uv/helpers"
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "16:00"
-  - package-ecosystem: "docker"
-    directory: "/uv"
     multi-ecosystem-group: "uv-ecosystem"
-  - package-ecosystem: "pip"
-    directory: "/uv/helpers"
-    multi-ecosystem-group: "uv-ecosystem"
+    open-pull-requests-limit: 3
     ignore:
       # Ignore major updates as most major updates will need manual intervention
       - dependency-name: "*"
-        update-types: [ "version-update:semver-major" ]
-  - package-ecosystem: "docker"
-    directory: "/docker"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-    groups:
-      regclient:
-        patterns:
-          - "regclient/regctl*"
-          - "sigstore/cosign/cosign*"
-  - package-ecosystem: "docker"
-    directory: "/gradle"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-      
+        update-types:
+          - "version-update:semver-major"
