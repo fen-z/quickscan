@@ -12,14 +12,9 @@
   # Directory where serverless functions are located
   directory = "netlify/functions"
 
-# Redirects and rewrites
-[[redirects]]
-  # Redirect /api/* to serverless functions
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+
 
 # Environment variables (set these in Netlify UI or netlify.toml)
-# NOTIFICATION_EMAIL = "f.zwaans@supplyvalue.nl"
-# SENDGRID_API_KEY = "your-sendgrid-api-key-here"
-# FROM_EMAIL = "noreply@yourdomain.com"
+# NOTIFICATION_EMAIL = ""
+# SENDGRID_API_KEY = ""
+# FROM_EMAIL = ""

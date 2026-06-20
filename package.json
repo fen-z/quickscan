@@ -12,7 +12,7 @@
   "dependencies": {
     "chart.js": "^4.4.4",
     "html2canvas": "^1.4.1",
-    "jspdf": "^3.0.3"
+    "jspdf": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-legacy": "^6.1.0",

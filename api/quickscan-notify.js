@@ -2,7 +2,7 @@
  * Vercel Serverless Function to send email notifications when someone completes the quickscan
  * 
  * Environment Variables Required (set in Vercel Dashboard):
- * - NOTIFICATION_EMAIL: The email address to send notifications to (e.g., f.zwaans@supplyvalue.nl)
+ * - NOTIFICATION_EMAIL: The email address to send notifications to
  * - SENDGRID_API_KEY: Your SendGrid API key (or use another email service)
  * 
  * Alternative: You can use any email service (AWS SES, Mailgun, Postmark, etc.)
