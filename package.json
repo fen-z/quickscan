@@ -22,7 +22,7 @@
   },
   "optionalDependencies": {
     "@sendgrid/mail": "^8.1.4",
-    "resend": "^4.0.0"
+    "resend": "^6.14.0"
   },
   "jest": {
     "testEnvironment": "jsdom"
