@@ -1,0 +1,39 @@
+name: NodeJS with Webpack
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        # Node 20.x is deprecated and no longer supported on GitHub Actions
+        # See: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
+    steps:
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c  # v4.1.1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@1e60f620b9541d910a70a8180f546a0389c5d5d3  # v4.0.0
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Build
+        run: |
+          npm install
+          npx webpack

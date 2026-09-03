@@ -14,9 +14,9 @@ Quick steps with Resend:
 3. Rename the `-resend` function file to replace the SendGrid version
 4. Install: `npm install resend`
 5. Set environment variables in Netlify/Vercel:
-   - `NOTIFICATION_EMAIL=f.zwaans@supplyvalue.nl`
+   - `NOTIFICATION_EMAIL=`
    - `RESEND_API_KEY=re_...`
-   - `FROM_EMAIL=onboarding@resend.dev` (for testing)
+   - `FROM_EMAIL=` (for testing)
 6. Deploy and test!
 
 ---
@@ -43,9 +43,9 @@ Quick steps with Resend:
    ```
 5. **Configure Environment Variables** in Netlify:
    ```
-   NOTIFICATION_EMAIL=f.zwaans@supplyvalue.nl
+   NOTIFICATION_EMAIL=
    RESEND_API_KEY=re_...
-   FROM_EMAIL=onboarding@resend.dev
+   FROM_EMAIL=
    ```
 6. **Test**: Fill out the form on your deployed site!
 
@@ -87,4 +87,4 @@ See [EMAIL_NOTIFICATION_SETUP.md](./EMAIL_NOTIFICATION_SETUP.md) for details.
 
 ## Need Help?
 
-Contact: f.zwaans@supplyvalue.nl
+Contact: 

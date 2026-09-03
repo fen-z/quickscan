@@ -106,6 +106,21 @@ If you need to preserve a branch after merging:
 1. Name your branch with a `keep-` prefix when creating it (e.g., `keep-experimental-feature`)
 2. Or coordinate with maintainers to add it to the protected branches list
 
+### Close All Pull Requests (Maintenance)
+
+For repository maintenance, there is a manual workflow that closes all open pull requests and deletes their associated branches in one step. To run it:
+
+1. Go to **Actions** → **Close All Pull Requests**
+2. Click **Run workflow**
+3. Optionally provide a reason (shown as a comment on each closed PR)
+4. Click **Run workflow**
+
+This workflow:
+- Posts a comment on each PR explaining why it is being closed
+- Closes all open PRs
+- Deletes all non-protected, non-`keep-` branches
+- Preserves protected branches (main, work, master, develop, production, staging) and branches with the `keep-` prefix
+
 ## Security
 
 If you discover a security vulnerability, please do not create a public issue. Instead, refer to our [Security Policy](SECURITY.md) for reporting instructions.
