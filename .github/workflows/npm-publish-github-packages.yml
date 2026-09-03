@@ -7,14 +7,20 @@ on:
   release:
     types: [created]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c  # v4.1.1
+      
+      - uses: actions/setup-node@1e60f620b9541d910a70a8180f546a0389c5d5d3  # v4.0.0
         with:
-          node-version: 20
+          node-version: 22
+          cache: 'npm'
+      
       - run: npm ci
       - run: npm test
 
@@ -25,12 +31,15 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c  # v4.1.1
+      
+      - uses: actions/setup-node@1e60f620b9541d910a70a8180f546a0389c5d5d3  # v4.0.0
         with:
-          node-version: 20
+          node-version: 22
           registry-url: https://npm.pkg.github.com/
+          cache: 'npm'
+      
       - run: npm ci
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
