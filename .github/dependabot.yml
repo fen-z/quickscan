@@ -1,0 +1,52 @@
+version: 3
+updates:
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+    open-pull-requests-limit: 5
+    pull-request-branch-name:
+      separator: "/"
+    reviewers:
+      - "fen-z"
+    labels:
+      - "dependencies"
+      - "actions"
+    commit-message:
+      prefix: "chore(deps):"
+      prefix-major: "chore(deps)!:"
+      include: "scope"
+    allow:
+      - dependency-type: "production"
+      - dependency-type: "direct"
+    rebase-strategy: "auto"
+    # Automatically approve and merge minor/patch updates
+    auto-commit-message: "chore(deps): auto-update actions [skip ci]"
+
+  # Enable version updates for npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+    open-pull-requests-limit: 5
+    pull-request-branch-name:
+      separator: "/"
+    reviewers:
+      - "fen-z"
+    labels:
+      - "dependencies"
+      - "npm"
+    commit-message:
+      prefix: "chore(deps):"
+      prefix-major: "chore(deps)!:"
+      include: "scope"
+    allow:
+      - dependency-type: "production"
+      - dependency-type: "direct"
+    rebase-strategy: "auto"
+    versioning-strategy: "auto"
